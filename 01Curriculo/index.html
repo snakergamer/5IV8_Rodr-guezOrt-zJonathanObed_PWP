@@ -3,29 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi nombre</title>
+    <title>RODRÍGUEZ ORTÍZ JONATHAN OBED</title>
 </head>
 <body>
     <div class="container-main">
         <div class="container-nav">
             <header>
-                <nav> aqui va un menu</nav>
+                <div class="logo">JONATHAN <span>OBED</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#education">Educación</a></li>
+                        <li><a href="#skills">Habilidades</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
             </header>
-
         </div>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h1>RODRÍGUEZ ORTÍZ JONATHAN OBED</h1>
+                <p>Estudiante de Programación en CECyT 9 | 5to Semestre</p>
+                <a href="#contact" class="btn">Contactar</a>
+            </div>
+        </div>
+        
         <div class="container-body">
-            <section>
-                <h2>aqui hablan de ustedes</h2>
-            </section>
-            <article>sirve para colocar un parrafo en columnas tambien como banner de puclicidad</article>
+            <main>
+                <section id="about" class="about">
+                    <h2 class="section-title">Sobre Mí</h2>
+                    <p>Soy politécnico con estudios de nivel medio superior, actualmente me ubico en el CECyT 9 estoy en 5to semestre estudiando la carrera de programación.</p>
+                    <p>Me gusta el color negro y cualquier color que combine con él. Disfruto de la comida frita y la carne, me gusta escuchar música de todo tipo. Soy bueno escuchando a la gente pero a veces me siento torpe al hablar o explicar lo que pienso.</p>
+                    <p>Mi objetivo es convertirme en un desarrollador profesional y contribuir a proyectos innovadores que tengan un impacto positivo.</p>
+                </section>
+                
+                <section id="education" class="education">
+                    <h2 class="section-title">Educación</h2>
+                    <div class="education-item">
+                        <h3>Técnico en Programación</h3>
+                        <div class="date">2022 - Presente</div>
+                        <p>CECyT 9 "Juan de Dios Bátiz" - Instituto Politécnico Nacional</p>
+                        <p>5to semestre en curso</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Educación Secundaria</h3>
+                        <div class="date">2020 - 2023</div>
+                        <p>Secundaria Diurna No. 97 "Juan Enrique Pestalozzi"</p>
+                    </div>
+                </section>
+                
+                <section id="skills" class="skills-section">
+                    <h2 class="section-title">Habilidades</h2>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <div class="skill-name">HTML/CSS</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">JavaScript</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Java</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Base de Datos</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Comunicación</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Trabajo en Equipo</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="interests-section">
+                    <h2 class="section-title">Intereses</h2>
+                    <div class="interests">
+                        <div class="interest-item">Desarrollo Web</div>
+                        <div class="interest-item">Tecnología</div>
+                        <div class="interest-item">Música</div>
+                        <div class="interest-item">Gastronomía</div>
+                        <div class="interest-item">Videojuegos</div>
+                        <div class="interest-item">Paseos</div>
+                    </div>
+                </section>
+            </main>
+            
             <aside>
-                <h2>ESTO SIRVE PARA ADDS O ANUNCIOS</h2>
+                <div class="personal-info">
+                    <h2 class="section-title">Información Personal</h2>
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <span>16 años</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ciudad de México</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>jono.rodo27@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 55 91921048</span>
+                    </div>
+                </div>
+                
+                <div id="contact" class="contact-info">
+                    <h2 class="section-title">Contacto</h2>
+                    <p>¿Interesado en trabajar juntos? No dudes en contactarme:</p>
+                    <form>
+                        <input type="text" placeholder="Nombre" required>
+                        <input type="email" placeholder="Email" required>
+                        <textarea placeholder="Mensaje" rows="4" required></textarea>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
             </aside>
         </div>
+        
         <div class="container-footer">
-            <footer>
-                <h2>esto sirve para el pie de pagina, puede haber micrositios, aviso de privacidad, etc </h2>
-            </footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 Jonathan Obed Rodríguez Ortíz. Todos los derechos reservados.</p>
         </div>
     </div>
 </body>

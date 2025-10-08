@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Descuentos</title>
+    <link rel="stylesheet" href="./stylee3.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-header">
+            <h2 class="calculator-title">Calculadora de Descuentos</h2>
+            <p class="calculator-subtitle">Aplica un 5% de descuento a tus productos</p>
+
+            <button class="btn-back" onclick="window.location.href='../index.html'">← Volver</button>
+        </div>
+        
+        <div class="calculator-body">
+            <div class="discount-badge">¡Descuento Especial del 5% en todos los productos!</div>
+            
+            <form name="formulario" method="post" action="">
+                <div class="form-group">
+                    <label for="producto">Nombre del Producto:</label>
+                    <input type="text" name="producto" id="producto" placeholder="Ejemplo: Laptop Gamer">
+                    <div class="info-text">Ingresa el nombre del producto</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="precio">Precio Original:</label>
+                    <input type="text" name="precio" id="precio" onkeypress="return validarNumero(event)" placeholder="Ejemplo: 1200.50">
+                    <div class="info-text">Ingresa el precio original del producto</div>
+                    <span id="error-precio" class="error"></span>
+                </div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn-calculate" onclick="calcularDescuento()">Calcular Descuento</button>
+                    <button type="button" class="btn-reset" onclick="borrarDatos()">Limpiar</button>
+                </div>
+                
+                <div class="results" id="results" style="display: none;">
+                    <div class="result-title">Resumen de Compra</div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Producto:</span>
+                        <span class="result-value" id="result-producto">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Precio Original:</span>
+                        <span class="result-value" id="result-precio">$ 0.00</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Descuento (5%):</span>
+                        <span class="result-value" id="result-descuento">$ 0.00</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Total a Pagar:</span>
+                        <span class="result-value" id="result-total">$ 0.00</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="./funcionese3.js"></script>
+</body>
+</html>

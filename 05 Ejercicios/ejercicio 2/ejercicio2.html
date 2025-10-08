@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Comisiones</title>
+    <link rel="stylesheet" href="./stylee2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-header">
+            <h2 class="calculator-title">Calculadora de Comisiones</h2>
+            <button class="btn-back" onclick="window.location.href='../index.html'">Volver al Portafolio</button>
+        </div>
+        
+        <div class="calculator-body">
+            <p class="description">Ingresa el sueldo base y las 3 ventas realizadas para calcular el total a cobrar</p>
+            
+            <div class="commission-rate">Tasa de comisión: 10% sobre el total de ventas</div>
+            
+            <form name="formulario" method="post" action="">
+                <div class="form-group">
+                    <label for="sueldo-base">Sueldo Base:</label>
+                    <input type="text" name="sueldo-base" id="sueldo-base" onkeypress="return validarNumero(event)" placeholder="Ejemplo: 1500">
+                    <div class="info-text">Ingresa el sueldo base del vendedor</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Ventas Realizadas:</label>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <input type="text" name="venta1" id="venta1" onkeypress="return validarNumero(event)" placeholder="Venta 1">
+                        </div>
+                        <div class="input-item">
+                            <input type="text" name="venta2" id="venta2" onkeypress="return validarNumero(event)" placeholder="Venta 2">
+                        </div>
+                        <div class="input-item">
+                            <input type="text" name="venta3" id="venta3" onkeypress="return validarNumero(event)" placeholder="Venta 3">
+                        </div>
+                    </div>
+                    <div class="info-text">Ingresa el monto de cada una de las 3 ventas</div>
+                </div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn-calculate" onclick="calcularComision()">Calcular Comisión</button>
+                    <button type="button" class="btn-reset" onclick="borrarDatos()">Borrar Datos</button>
+                </div>
+                
+                <div class="results">
+                    <div class="result-card">
+                        <div class="result-label">Total de Ventas:</div>
+                        <div class="result-value" id="total-ventas">$ 0.00</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">Comisión (10%):</div>
+                        <div class="result-value" id="comision">$ 0.00</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">Sueldo Base:</div>
+                        <div class="result-value" id="sueldo-base-result">$ 0.00</div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">Total a Cobrar:</div>
+                        <div class="result-value" id="total-cobrar">$ 0.00</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./funcionese2.js"></script>
+</body>
+</html>

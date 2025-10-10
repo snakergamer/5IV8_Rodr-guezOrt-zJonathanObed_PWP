@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Calificaciones</title>
+<link rel="stylesheet" href="./stylee4.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-header">
+            <h2 class="calculator-title">Calculadora de Calificaciones</h2>
+            <p class="calculator-subtitle">Materia: Algoritmos</p>
+            <button class="btn-back"><a href="../index.html">← Volver</a></button>
+        </div>
+        
+        <div class="calculator-body">
+            <div class="percentage-info">
+                <div class="percentage-card">
+                    <div class="percentage-title">Promedio Parciales</div>
+                    <div class="percentage-value">55%</div>
+                </div>
+                <div class="percentage-card">
+                    <div class="percentage-title">Examen Final</div>
+                    <div class="percentage-value">30%</div>
+                </div>
+                <div class="percentage-card">
+                    <div class="percentage-title">Trabajo Final</div>
+                    <div class="percentage-value">15%</div>
+                </div>
+            </div>
+            
+            <form name="formulario" method="post" action="">
+                <div class="form-section">
+                    <h3 class="section-title">Calificaciones Parciales (55%)</h3>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <label for="calif1">Parcial 1</label>
+                            <input type="text" id="calif1" onkeypress="return validarNumero(event)" placeholder="0-100">
+                            <span id="error-calif1" class="error"></span>
+                        </div>
+                        <div class="input-item">
+                            <label for="calif2">Parcial 2</label>
+                            <input type="text" id="calif2" onkeypress="return validarNumero(event)" placeholder="0-100">
+                            <span id="error-calif2" class="error"></span>
+                        </div>
+                        <div class="input-item">
+                            <label for="calif3">Parcial 3</label>
+                            <input type="text" id="calif3" onkeypress="return validarNumero(event)" placeholder="0-100">
+                            <span id="error-calif3" class="error"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Examen Final (30%)</h3>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <input type="text" id="examen" onkeypress="return validarNumero(event)" placeholder="0-100">
+                            <span id="error-examen" class="error"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Trabajo Final (15%)</h3>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <input type="text" id="trabajo" onkeypress="return validarNumero(event)" placeholder="0-100">
+                            <span id="error-trabajo" class="error"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button type="button" class="btn-calculate" onclick="calcularCalificacion()">Calcular Calificación</button>
+                    <button type="button" class="btn-reset" onclick="borrarDatos()">Limpiar</button>
+                </div>
+                
+                <div class="results" id="results" style="display: none;">
+                    <div class="result-title">Resultados Finales - Algoritmos</div>
+                    
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">Promedio Parciales</div>
+                            <div class="result-value" id="result-promedio">0.00</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Valor Parciales (55%)</div>
+                            <div class="result-value" id="result-valor-parciales">0.00</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Examen Final (30%)</div>
+                            <div class="result-value" id="result-valor-examen">0.00</div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">Trabajo Final (15%)</div>
+                            <div class="result-value" id="result-valor-trabajo">0.00</div>
+                        </div>
+                        
+                        <div class="result-item final-grade">
+                            <div class="result-label">Calificación Final</div>
+                            <div class="result-value" id="result-final">0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./funcionese4.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Edad</title>
+    <link rel="stylesheet" href="./stylee6.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Edad</h1>
+        
+        <form>
+            <div class="form-group">
+                <label>Año de Nacimiento:</label>
+                <input type="text" id="nacimiento" placeholder="Ejemplo: 2000">
+                <span id="error-nacimiento" class="error"></span>
+            </div>
+            
+            <div class="buttons">
+                <button type="button" class="btn-calculate" onclick="calcularEdad()">Calcular Edad</button>
+                <button type="button" class="btn-reset" onclick="limpiar()">Limpiar</button>
+            </div>
+        </form>
+        
+        <div id="resultado" class="result" style="display: none;">
+            <h3>Resultado:</h3>
+            <p id="edad"></p>
+        </div>
+        
+        <!-- BOTÓN PARA REGRESAR AL PORTAFOLIO -->
+        <button class="btn-back" onclick=""><a href="../index.html">Volver al Portafolio</a></button>
+    </div>
+
+    <script src="./funcionese6.js"></script>
+</body>
+</html>

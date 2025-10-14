@@ -288,6 +288,7 @@
         .type-electric { background: #ffcc33; color: #000; }
         .type-grass { background: #77cc55; }
         .type-psychic { background: #ff5599; }
+        .type-ghost { background: #866db6; }
 
         @media (max-width: 768px) {
             .container {

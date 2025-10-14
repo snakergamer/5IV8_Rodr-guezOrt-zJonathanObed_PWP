@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Programación</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Ejercicios de Programación</h1>
+
+    <div class="ejercicio">
+        <h2>Ejercicio 1: Operaciones con 2 números</h2>
+        <input type="number" id="num1" placeholder="Primer número">
+        <input type="number" id="num2" placeholder="Segundo número">
+        <button onclick="calcularOperacion()">Calcular</button>
+        <div id="resultado1" class="resultado"></div>
+    </div>
+
+    <div class="ejercicio">
+        <h2>Ejercicio 2: Número mayor de 3</h2>
+        <input type="number" id="numA" placeholder="Primer número">
+        <input type="number" id="numB" placeholder="Segundo número">
+        <input type="number" id="numC" placeholder="Tercer número">
+        <button onclick="encontrarMayor()">Encontrar Mayor</button>
+        <div id="resultado2" class="resultado"></div>
+    </div>
+
+    <div class="ejercicio">
+        <h2>Ejercicio 3: Cálculo de horas extra</h2>
+        <input type="number" id="horasTrabajadas" placeholder="Horas trabajadas">
+        <input type="number" id="salarioHora" placeholder="Salario por hora">
+        <button onclick="calcularHorasExtra()">Calcular Pago</button>
+        <div id="resultado3" class="resultado"></div>
+    </div>
+
+    <div class="ejercicio">
+        <h2>Ejercicio 4: Utilidades anuales</h2>
+        <input type="number" id="salarioMensual" placeholder="Salario mensual">
+        <input type="number" id="antiguedad" placeholder="Años de antigüedad" step="0.1">
+        <button onclick="calcularUtilidades()">Calcular Utilidades</button>
+        <div id="resultado4" class="resultado"></div>
+    </div>
+    <script src="./funcionesinteredias.js"></script>
+</body>
+</html>

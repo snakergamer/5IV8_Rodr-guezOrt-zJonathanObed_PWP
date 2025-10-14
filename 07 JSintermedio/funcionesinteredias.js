@@ -100,3 +100,101 @@ if(indiceChihuahua > -1){
     console.log(razasDePerros);
 }
     */
+   function calcularOperacion() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const resultado = document.getElementById('resultado1');
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.textContent = 'Por favor ingresa ambos números';
+                return;
+            }
+            
+            let operacion;
+            if (num1 === num2) {
+                operacion = num1 * num2;
+                resultado.textContent = `Son iguales, multiplicación: ${operacion}`;
+            } else if (num1 > num2) {
+                operacion = num1 - num2;
+                resultado.textContent = `Primero es mayor, resta: ${operacion}`;
+            } else {
+                operacion = num1 + num2;
+                resultado.textContent = `Segundo es mayor, suma: ${operacion}`;
+            }
+        }
+
+        function encontrarMayor() {
+            const numA = parseFloat(document.getElementById('numA').value);
+            const numB = parseFloat(document.getElementById('numB').value);
+            const numC = parseFloat(document.getElementById('numC').value);
+            const resultado = document.getElementById('resultado2');
+            
+            if (isNaN(numA) || isNaN(numB) || isNaN(numC)) {
+                resultado.textContent = 'Por favor ingresa los tres números';
+                return;
+            }
+            
+            if (numA === numB || numA === numC || numB === numC) {
+                resultado.textContent = 'Los números deben ser diferentes';
+                return;
+            }
+            
+            const mayor = Math.max(numA, numB, numC);
+            resultado.textContent = `El número mayor es: ${mayor}`;
+        }
+
+        function calcularHorasExtra() {
+            const horas = parseFloat(document.getElementById('horasTrabajadas').value);
+            const salario = parseFloat(document.getElementById('salarioHora').value);
+            const resultado = document.getElementById('resultado3');
+            
+            if (isNaN(horas) || isNaN(salario) || horas < 0 || salario < 0) {
+                resultado.textContent = 'Por favor ingresa valores válidos';
+                return;
+            }
+            
+            let pagoTotal;
+            if (horas <= 40) {
+                pagoTotal = horas * salario;
+                resultado.textContent = `Pago normal: $${pagoTotal.toFixed(2)}`;
+            } else {
+                const horasExtra = horas - 40;
+                let pagoExtra;
+                
+                if (horasExtra <= 8) {
+                    pagoExtra = horasExtra * salario * 2;
+                } else {
+                    pagoExtra = (8 * salario * 2) + ((horasExtra - 8) * salario * 3);
+                }
+                
+                pagoTotal = (40 * salario) + pagoExtra;
+                resultado.textContent = `Pago total con horas extra: $${pagoTotal.toFixed(2)}`;
+            }
+        }
+
+        function calcularUtilidades() {
+            const salario = parseFloat(document.getElementById('salarioMensual').value);
+            const antiguedad = parseFloat(document.getElementById('antiguedad').value);
+            const resultado = document.getElementById('resultado4');
+            
+            if (isNaN(salario) || isNaN(antiguedad) || salario < 0 || antiguedad < 0) {
+                resultado.textContent = 'Por favor ingresa valores válidos';
+                return;
+            }
+            
+            let porcentaje;
+            if (antiguedad < 1) {
+                porcentaje = 0.05;
+            } else if (antiguedad >= 1 && antiguedad < 2) {
+                porcentaje = 0.07;
+            } else if (antiguedad >= 2 && antiguedad < 5) {
+                porcentaje = 0.10;
+            } else if (antiguedad >= 5 && antiguedad < 10) {
+                porcentaje = 0.15;
+            } else {
+                porcentaje = 0.20;
+            }
+            
+            const utilidadAnual = salario * 12 * porcentaje;
+            resultado.textContent = `Utilidades anuales: $${utilidadAnual.toFixed(2)} (${(porcentaje * 100)}%)`;
+        }

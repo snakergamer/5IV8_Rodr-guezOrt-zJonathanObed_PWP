@@ -179,24 +179,24 @@ function mezclarPiezas(veces){
     },100);
 }
 //necitamos saber que flechas se estan moviendo
-function capturarteclas() {
-    document.body.onkeydown = function (evento) {
-        if (
-            evento.which === codigosdireccion.ABAJO ||
-            evento.which === codigosdireccion.ARRIBA ||
-            evento.which === codigosdireccion.DERECHA ||
-            evento.which === codigosdireccion.IZQUIERDA
-        ) {
-            moverendireccion(evento.which);
-            var gano = checarSiGano();
-            if (gano) {
-                setTimeout(function () {
-                    mostrarCartelGanador();
-                }, 500);
-            }
-            evento.preventDefault();
+function capturarteclas(){
+    document.body.onkeydown = (function(evento){
+        if(evento.which === codigosdireccion.ABAJO ||
+           evento.which === codigosdireccion.ARRIBA ||
+           evento.which === codigosdireccion.DERECHA ||
+           evento.which === codigosdireccion.IZQUIERDA){
+               moverendireccion(evento.which);
+               var gano = checarSiGano();
+               if(gano){
+                setTimeout( function(){
+                   mostrarCartelGanador();
+                },500);
+                
+           }
+           evento.preventDefault();    
         }
-    };
+    }
+);
 }
 
 function iniciar(){

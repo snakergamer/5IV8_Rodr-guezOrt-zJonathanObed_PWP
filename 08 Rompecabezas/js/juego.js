@@ -171,7 +171,6 @@ function actualizarUltimoMovimiento(direccion) {
 //ahora mezclar piezas
 function mezclarPiezas(veces){
     if(veces <= 0){
-        alert("Asi no se juega");
         return;
     }
 

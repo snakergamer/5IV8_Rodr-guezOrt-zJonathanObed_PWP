@@ -29,13 +29,13 @@ var columnaVacia = 2;
 
 function mostrarInstrucciones(instrucciones){
     for(var i = 0; i < instrucciones.length; i++){
-        mostrarIntruccionesLista(instrucciones[i], "lista-instrucciones");
+        mostrarInstruccionesLista(instrucciones[i], "lista-instrucciones"); // CORREGIDO: agregada 'c'
     }
 } 
 
 //esta funcion se encarga de crear el componente li y agregar la lista de dichas instrucciones
 
-function mostrarIntruccionesLista(instruccion, idLista){
+function mostrarInstruccionesLista(instruccion, idLista){
     var ul = document.getElementById(idLista);
     var li = document.createElement("li");
     li.textContent = instruccion;
@@ -94,31 +94,29 @@ var codigosdireccion = {
     ABAJO : 40
 };
 
-function moverendireccion(direccion){
-    var nuevafilapiezavacia;
-    var nuevacolumnapiezavacia;
+function moverendireccion(direccion) {
+    var nuevaFilaPiezaVacia;
+    var nuevaColumnaPiezaVacia;
 
-    if(direccion === codigosdireccion.ABAJO){
-        nuevacolumnapiezavacia = columnavacia;
-        nuevafilapiezavacia = filavacia + 1;   
-    }else if(direccion === codigosdireccion.ARRIBA){
-        nuevacolumnapiezavacia = columnavacia;
-        nuevafilapiezavacia = filavacia - 1;
-    }else if(direccion === codigosdireccion.DERECHA){
-        nuevafilapiezavacia = filavacia;
-        nuevacolumnapiezavacia = columnavacia + 1;
-    }else if(direccion === codigosdireccion.IZQUIERDA){
-        nuevafilapiezavacia = filavacia;
-        nuevacolumnapiezavacia = columnavacia - 1;
+    if (direccion === codigosdireccion.ABAJO) {
+        nuevaColumnaPiezaVacia = columnaVacia;
+        nuevaFilaPiezaVacia = filaVacia + 1;
+    } else if (direccion === codigosdireccion.ARRIBA) {
+        nuevaColumnaPiezaVacia = columnaVacia;
+        nuevaFilaPiezaVacia = filaVacia - 1;
+    } else if (direccion === codigosdireccion.DERECHA) {
+        nuevaFilaPiezaVacia = filaVacia;
+        nuevaColumnaPiezaVacia = columnaVacia + 1;
+    } else if (direccion === codigosdireccion.IZQUIERDA) {
+        nuevaFilaPiezaVacia = filaVacia;
+        nuevaColumnaPiezaVacia = columnaVacia - 1;
     }
-    //mando a llamar la funcion de posicion valida
 
-    if(posicionvalida(nuevafilapiezavacia, nuevacolumnapiezavacia)){
-        //tengo que hacer una funcion que se encargue de intercambiar las posiciones
-        intercambiarPosiciones(filavacia, columnavacia, nuevafilapiezavacia, nuevacolumnapiezavacia);
-        actualizarPosicionVacia(nuevafilapiezavacia, nuevacolumnapiezavacia);
-        //tengo que guardar el utimo movimiento
-        agregarUltimoMovimiento(direccion);
+    if (posicionvalida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
+        intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+        actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
+        // Llamada corregida a la función existente
+        actualizarUltimoMovimiento(direccion);
     }
 }
 function intercambiarPosiciones(fila1, columna1, fila2, columna2) {
@@ -144,10 +142,18 @@ function intercambiarPosicionesDOM(idPieza1, idPieza2) {
     padre1.replaceChild(clonePieza2, pieza1);
     padre2.replaceChild(clonePieza1, pieza2);
 }
+function verificarElementosDOM() {
+    var ulInstrucciones = document.getElementById("lista-instrucciones");
+    if (!ulInstrucciones) {
+        console.error("Elemento #lista-instrucciones no encontrado en el DOM");
+        return false;
+    }
+    return true;
+}
 //debo de actualizar los movimientos
-function actualizarUltimoMovimiento(direccion){
-   var ultimoMovimiento =document.getElementById("flecha");
-   switch (direccion){
+function actualizarUltimoMovimiento(direccion) {
+    var ultimoMovimiento = document.getElementById("flecha");
+    switch (direccion) {
         case codigosdireccion.IZQUIERDA:
             ultimoMovimiento.textContent = "←";
             break;
@@ -160,7 +166,7 @@ function actualizarUltimoMovimiento(direccion){
         case codigosdireccion.ABAJO:
             ultimoMovimiento.textContent = "↓";
             break;
-   }
+    }
 }
 //ahora mezclar piezas
 function mezclarPiezas(veces){
@@ -200,13 +206,24 @@ function capturarteclas(){
 }
 
 function iniciar(){
-    //mezclar las piezas
+    // Verificar elementos DOM primero
+    if (!verificarElementosDOM()) {
+        console.error("Error: Elementos del DOM no encontrados");
+        return;
+    }
+    
+    // Mostrar instrucciones
+    mostrarInstrucciones(instrucciones);
+    
+    // Mezclar las piezas
     mezclarPiezas(30);
     capturarteclas();
-    //mezclarPiezas
-
 }
 
-iniciar();
+// Llamar a iniciar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    iniciar();
+});
+
 
 mostrarInstrucciones(instrucciones);

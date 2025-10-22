@@ -289,6 +289,7 @@
         .type-grass { background: #77cc55; }
         .type-psychic { background: #ff5599; }
         .type-ghost { background: #866db6; }
+        .type-dragon { background: #5363e0 ; }
 
         @media (max-width: 768px) {
             .container {

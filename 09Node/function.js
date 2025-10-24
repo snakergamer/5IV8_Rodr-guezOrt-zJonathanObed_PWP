@@ -1,10 +1,10 @@
 var prueba = {
-    suma = function(a, b){
+    suma: function(a, b) {
         var c = a + b;
-        console.log('c')
+        console.log(c);
     },
-    resta = function(a, b){
+    resta: function(a, b) {
         var c = a - b;
-        console.log('c')
+        console.log(c);
     },
-}
+};

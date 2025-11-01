@@ -1,0 +1,13 @@
+title: "x"
+description: "arreglo de errores"
+
+# Excluir directorios que no necesitan procesarse
+exclude:
+  - node_modules/
+  - vendor/
+  - .git/
+  - package.json
+  - package-lock.json
+
+# Configuración del tema
+theme: jekyll-theme-primer

@@ -292,6 +292,7 @@
         .type-dragon { background: #5363e0 ; }
         .type-bug { background: #b6e053 ; }
         .type-venom { background: #bf53e0 ; }
+        .type-steel { background: #9c9c9c ; }
 
         @media (max-width: 768px) {
             .container {

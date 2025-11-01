@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo API Explorer - Portafolio de Evidencias</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/101326ea39.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-helmet-battle"></i>
+                    <span>Halo API Explorer</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#player-stats">Estadísticas</a>
+                    <a href="#weapons">Armas</a>
+                    <a href="#vehicles">Vehículos</a>
+                    <a href="#campaign">Campaña</a>
+                    <a href="#multiplayer">Multijugador</a>
+                    <a href="#achievements">Logros</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Explora la API de Halo</h1>
+            <p>Consulta estadísticas de jugadores, información de armas, vehículos, campaña, multijugador y logros del universo de Halo</p>
+            <a href="#api-section" class="btn">Comenzar</a>
+        </div>
+    </section>
+    
+    <section id="api-section" class="api-section">
+        <div class="container">
+            <h2 class="section-title">Consulta de Datos de Halo</h2>
+            
+            <div class="api-form">
+                <div class="form-group">
+                    <label for="api-key">Clave API de Halo</label>
+                    <input type="text" id="api-key" placeholder="Ingresa tu clave API de Halo">
+                    <small>⚠️ No hay APIs públicas disponibles - Usando datos de demostración</small>
+                    <small>.Esta aplicación demuestra el consumo de APIs. Para Halo se requiere autenticación oficial, por lo que se muestran datos de demostración que simulan la estructura real de la API.</small>
+                </div>
+                <div class="form-group">
+                    <label for="gamertag">Gamertag</label>
+                    <input type="text" id="gamertag" placeholder="Ingresa cualquier gamertag">
+                </div>
+                <button id="fetch-data" class="btn">Consultar Datos</button>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="player-stats">Estadísticas de Jugador</button>
+                <button class="tab" data-tab="weapons">Armas</button>
+                <button class="tab" data-tab="vehicles">Vehículos</button>
+                <button class="tab" data-tab="campaign">Campaña</button>
+                <button class="tab" data-tab="multiplayer">Multijugador</button>
+                <button class="tab" data-tab="achievements">Logros y Medallas</button>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Cargando datos...</p>
+            </div>
+            
+            <div id="player-stats" class="tab-content active">
+                <h3 class="section-title">Estadísticas del Jugador</h3>
+                <div class="results" id="player-results"></div>
+            </div>
+            
+            <div id="weapons" class="tab-content">
+                <h3 class="section-title">Armas de Halo</h3>
+                <div class="weapon-grid" id="weapon-results"></div>
+            </div>
+            
+            <div id="vehicles" class="tab-content">
+                <h3 class="section-title">Vehículos de Halo</h3>
+                <div class="vehicle-grid" id="vehicle-results"></div>
+            </div>
+            
+            <div id="campaign" class="tab-content">
+                <h3 class="section-title">Progreso de Campaña</h3>
+                <div id="campaign-results"></div>
+            </div>
+            
+            <div id="multiplayer" class="tab-content">
+                <h3 class="section-title">Estadísticas de Multijugador</h3>
+                <div class="results" id="multiplayer-results"></div>
+            </div>
+            
+            <div id="achievements" class="tab-content">
+                <h3 class="section-title">Logros y Medallas</h3>
+                <div class="medal-grid" id="achievement-results"></div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p> Consumo de API Halo</p>
+            <p>⚠️ Demo con datos de ejemplo - No hay API pública disponible sin autenticación</p>
+        </div>
+    </footer>
+
+    <script src="js/halo-api.js"></script>
+</body>
+</html>

@@ -3,6 +3,8 @@ description: "arreglo de errores"
 
 # Excluir directorios que no necesitan procesarse
 exclude:
+  - "**/node_modules/**"
+  - "09Node/node_modules/"
   - "node_modules/"
   - "vendor/"
   - "*.gem"

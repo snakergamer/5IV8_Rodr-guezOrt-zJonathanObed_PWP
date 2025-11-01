@@ -1,13 +1,18 @@
-title: "x"
+title: "5IV8_RodríguezOrtízJonathanObed_PWP"
 description: "arreglo de errores"
 
 # Excluir directorios que no necesitan procesarse
 exclude:
-  - node_modules/
-  - vendor/
-  - .git/
-  - package.json
-  - package-lock.json
-
+  - "node_modules/"
+  - "vendor/"
+  - "*.gem"
+  - "*.gemspec"
+  - ".git/"
+  - ".svn/"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "package.json"
+  - "package-lock.json"
+  - "**/node_modules/**"
 # Configuración del tema
 theme: jekyll-theme-primer

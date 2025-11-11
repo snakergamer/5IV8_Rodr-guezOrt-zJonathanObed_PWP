@@ -294,6 +294,7 @@
         .type-venom { background: #bf53e0 ; }
         .type-fairy { background: #ff00f2 ; }
         .type-steel { background: #9c9c9c ; }
+        .type-rock { background: #ceb256 ; }
 
         @media (max-width: 768px) {
             .container {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Último Ejercicio - Segundo Parcial</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Memoize II - Ejercicio Resuelto</h1>
+            <p class="subtitle">Segundo Parcial - Programación Web</p>
+        </div>
+        
+        <div class="content">
+            <div class="image-container">
+                <img src="./img/test.png" alt="Resultado del ejercicio">
+            </div>
+            
+            <div class="description">
+                <p>El ejercicio ha sido completado y testeado exitosamente. La función memoize maneja correctamente múltiples tipos de datos incluyendo objetos, arrays y funciones.</p>
+            </div>
+            
+            <div class="code-section">
+                <h3>Código de la Solución</h3>
+                <pre><code>function memoize(fn) {
+    let c = new Map(), o = new WeakMap(), i = 0;
+    return function(...a) {
+        let k = a.map(arg => 
+            arg === null ? 'null' :
+            arg === undefined ? 'undefined' :
+            typeof arg === 'object' ? `obj:${o.has(arg) ? o.get(arg) : o.set(arg, ++i).get(arg)}` :
+            `${typeof arg}:${arg}`
+        ).join('|');
+        return c.has(k) ? c.get(k) : c.set(k, fn(...a)).get(k);
+    };
+}</code></pre>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Rodriguez Ortíz Jonathan Obed 5IV8</p>
+        </div>
+    </div>
+</body>
+</html>

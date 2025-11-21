@@ -4,32 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Estudiantes</title>
-    <link rel="stylesheet" href="/estilos.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Registro de Estudiantes</h1>
-    <form action="/estudiantes" method="POST">
-        <label for="nombre">Nombre: </label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="edad">Edad: </label>
-        <input type="number" id="edad" name="edad" required>
-        <label for="curso">Curso: </label>
-        <input type="text" id="curso" name="curso" required>
-        <button type="submit" >Registrar Estudiante</button>
-    </form>
-
-    <ul>
-        <% estudiantes.forEach(function(estudiante) { %>
-            <li>
-                <strong><%= estudiante.nombre %></strong> (Edad: <%= estudiante.edad %>, Curso: <%= estudiante.curso %>)
-                <span>
-                    <a href="/estudiantes/edit/<%= estudiante.id %>">Editar</a>
-                    <a href="/estudiantes/delete/<%= estudiante.id %>">Eliminar</a>
-                </span>
-            </li>
-        <% }); %>
-    </ul>
-    
-    
+    <div class="container">
+        <header>
+            <h1>Registro de Estudiantes</h1>
+            <p class="subtitle">Gestiona la información de tus estudiantes de forma moderna y eficiente</p>
+        </header>
+        
+        <div class="content">
+            <section class="form-section">
+                <h2 class="form-title"><i class="fas fa-user-plus"></i> Nuevo Estudiante</h2>
+                
+                <form action="/estudiantes" method="POST">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Ana García López">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad" name="edad" required min="16" max="100" placeholder="Ej: 20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="curso">Curso</label>
+                        <input type="text" id="curso" name="curso" required placeholder="Ej: Matemáticas Avanzadas">
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        <i class="fas fa-user-graduate"></i> Registrar Estudiante
+                    </button>
+                </form>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Estudiantes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Cursos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">20.7</div>
+                        <div class="stat-label">Edad Promedio</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="students-section">
+                <h2 class="students-title"><i class="fas fa-list-alt"></i> Lista de Estudiantes</h2>
+                
+                <ul class="student-list">
+                    <li class="student-item">
+                        <div class="student-info">
+                            <div class="student-name">Mimo</div>
+                            <div class="student-details">Edad: 20, Curso: Curso A</div>
+                        </div>
+                        <div class="student-actions">
+                            <a href="/estudiantes/edit/1" class="btn-action btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="/estudiantes/delete/1" class="btn-action btn-delete">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li class="student-item">
+                        <div class="student-info">
+                            <div class="student-name">Dito</div>
+                            <div class="student-details">Edad: 22, Curso: Curso B</div>
+                        </div>
+                        <div class="student-actions">
+                            <a href="/estudiantes/edit/2" class="btn-action btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="/estudiantes/delete/2" class="btn-action btn-delete">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li class="student-item">
+                        <div class="student-info">
+                            <div class="student-name">Pita</div>
+                            <div class="student-details">Edad: 20, Curso: Curso A</div>
+                        </div>
+                        <div class="student-actions">
+                            <a href="/estudiantes/edit/3" class="btn-action btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="/estudiantes/delete/3" class="btn-action btn-delete">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
 </body>
 </html>

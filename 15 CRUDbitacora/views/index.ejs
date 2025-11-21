@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Mantenimiento Preventivo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Bitácora de Mantenimiento Preventivo</h1>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/agregar">Agregar Registro</a></li>
+            <li><a href="../../index.html">Regresar al portafolio</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <% if (typeof success !== 'undefined') { %>
+            <div class="alert alert-success">
+                <% if (success === '1') { %>
+                    Registro agregado correctamente.
+                <% } else if (success === '2') { %>
+                    Registro actualizado correctamente.
+                <% } else if (success === '3') { %>
+                    Registro eliminado correctamente.
+                <% } %>
+            </div>
+        <% } %>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Equipo</th>
+                        <th>Fecha Programada</th>
+                        <th>Fecha Ejecución</th>
+                        <th>Tarea</th>
+                        <th>Técnico</th>
+                        <th>Horas/Ciclos</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (registros.length > 0) { %>
+                        <% registros.forEach(registro => { %>
+                            <tr>
+                                <td><%= registro.id %></td>
+                                <td><%= registro.id_equipo %></td>
+                                <td><%= new Date(registro.fecha_programada).toLocaleString() %></td>
+                                <td><%= registro.fecha_ejecucion ? new Date(registro.fecha_ejecucion).toLocaleString() : 'No ejecutado' %></td>
+                                <td><%= registro.tarea_realizada %></td>
+                                <td><%= registro.tecnico_responsable %></td>
+                                <td><%= registro.horas_ciclos %></td>
+                                <td>
+                                    <span class="estado-<%= registro.estado_servicio.toLowerCase().replace(' ', '-') %>">
+                                        <%= registro.estado_servicio %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/editar/<%= registro.id %>" class="btn btn-warning">Editar</a>
+                                    <a href="/eliminar/<%= registro.id %>" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="9" style="text-align: center;">No hay registros de mantenimiento</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 2rem; padding: 1rem; background: #34495e; color: white;">
+        <p>Sistema de Bitácora de Mantenimiento :D &copy; 2025</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro - Bitácora</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Editar Registro</h1>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/agregar">Agregar Registro</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <% if (typeof error !== 'undefined') { %>
+            <div class="alert alert-error">
+                Error al actualizar el registro. Intente nuevamente.
+            </div>
+        <% } %>
+
+        <div class="form-container">
+            <form action="/editar/<%= registro.id %>" method="POST">
+                <div class="form-group">
+                    <label for="id_equipo">ID de Equipo:</label>
+                    <input type="text" id="id_equipo" name="id_equipo" value="<%= registro.id_equipo %>" required maxlength="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_programada">Fecha Programada:</label>
+                    <input type="datetime-local" id="fecha_programada" name="fecha_programada" 
+                           value="<%= registro.fecha_programada.toISOString().slice(0,16) %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_ejecucion">Fecha de Ejecución:</label>
+                    <input type="datetime-local" id="fecha_ejecucion" name="fecha_ejecucion" 
+                           value="<%= registro.fecha_ejecucion ? registro.fecha_ejecucion.toISOString().slice(0,16) : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="tarea_realizada">Tarea Realizada:</label>
+                    <textarea id="tarea_realizada" name="tarea_realizada" required><%= registro.tarea_realizada %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tecnico_responsable">Técnico Responsable:</label>
+                    <input type="text" id="tecnico_responsable" name="tecnico_responsable" 
+                           value="<%= registro.tecnico_responsable %>" required maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="horas_ciclos">Horas/Ciclos:</label>
+                    <input type="number" id="horas_ciclos" name="horas_ciclos" step="0.01" 
+                           value="<%= registro.horas_ciclos %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado_servicio">Estado del Servicio:</label>
+                    <select id="estado_servicio" name="estado_servicio" required>
+                        <option value="Óptimo" <%= registro.estado_servicio === 'Óptimo' ? 'selected' : '' %>>Óptimo</option>
+                        <option value="Requiere seguimiento" <%= registro.estado_servicio === 'Requiere seguimiento' ? 'selected' : '' %>>Requiere seguimiento</option>
+                        <option value="Pendiente de pieza" <%= registro.estado_servicio === 'Pendiente de pieza' ? 'selected' : '' %>>Pendiente de pieza</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Actualizar Registro</button>
+                    <a href="/" class="btn btn-primary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 2rem; padding: 1rem; background: #34495e; color: white;">
+        <p>Sistema de Bitácora de Mantenimiento &copy; 2024</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Registro - Bitácora</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Eliminar Registro</h1>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/agregar">Agregar Registro</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <% if (typeof error !== 'undefined') { %>
+            <div class="alert alert-error">
+                Error al eliminar el registro. Intente nuevamente.
+            </div>
+        <% } %>
+
+        <div class="form-container">
+            <div class="alert alert-error">
+                <h3>¿Está seguro que desea eliminar este registro?</h3>
+                <p>Esta acción no se puede deshacer.</p>
+            </div>
+
+            <div class="form-group">
+                <label><strong>ID de Equipo:</strong></label>
+                <p><%= registro.id_equipo %></p>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Fecha Programada:</strong></label>
+                <p><%= new Date(registro.fecha_programada).toLocaleString() %></p>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Tarea Realizada:</strong></label>
+                <p><%= registro.tarea_realizada %></p>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Técnico Responsable:</strong></label>
+                <p><%= registro.tecnico_responsable %></p>
+            </div>
+
+            <form action="/eliminar/<%= registro.id %>" method="POST">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+                    <a href="/" class="btn btn-primary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 2rem; padding: 1rem; background: #34495e; color: white;">
+        <p>Sistema de Bitácora de Mantenimiento &copy; 2024</p>
+    </footer>
+</body>
+</html>

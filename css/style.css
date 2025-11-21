@@ -295,6 +295,7 @@
         .type-fairy { background: #ff00f2 ; }
         .type-steel { background: #9c9c9c ; }
         .type-rock { background: #ceb256 ; }
+        .type-dark { background: #0c122e ; }
 
         @media (max-width: 768px) {
             .container {

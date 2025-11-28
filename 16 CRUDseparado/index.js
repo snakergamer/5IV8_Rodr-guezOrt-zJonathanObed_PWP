@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const mysql2 = require('mysql2');
-
+const path = require('path');
 //primero las configuraciones de las rutas
-const cursosRouter = require('../routers/cursosRouters.js');
+const cursosRouter = require('./routers/cursosRouters.js');
 
 const app = express();
 
-const db = require('../database/db.js');
+const db = require('./database/db.js');
+const { error } = require('console');
 
 //configuramos las vistas
 
@@ -32,4 +32,17 @@ app.get('/vista/cursos-ejs', (req, res) => {
 //ruta de bienvenida
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'bienvenida.html'));
+});
+
+//ruta de consulta
+
+app.get('/vista/cursos-ejs', (req, res) => {
+    const sql = ('SELECT * FROM cursos', (error, resultados) => {
+        if (error) {
+            console.error('Error al obtener los cursos:' + error, message);
+            res.status(500).send('Error al obtener los cursos');
+            return res.render('cursos-ejs', { cursos: [] });
+        }
+        res.render('cursos-ejs', { cursos: resultados });
+    });
 });

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Estilos adicionales */
+        .result-win-x {
+            color: #ff5757;
+            font-weight: bold;
+        }
+
+        .result-win-o {
+            color: #5792ff;
+            font-weight: bold;
+        }
+
+        .result-draw {
+            color: #888;
+            font-weight: bold;
+        }
+
+        .result-in-progress {
+            color: #2ecc71;
+            font-style: italic;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title animate__animated animate__pulse">🐱 Gato de Gatos 🐱</h1>
+            <p class="subtitle">Tres en raya de tres en rayas</p>
+        </header>
+
+        <div class="game-container">
+            <div class="game-info">
+                <div class="player-info">
+                    <div class="player player-x">
+                        <div class="player-icon">❌</div>
+                        <div class="player-details">
+                            <h3>Jugador X</h3>
+                            <div class="score-display" id="score-x">0</div>
+                            <div class="player-name" id="player-x-name">Jugador X</div>
+                        </div>
+                    </div>
+
+                    <div class="vs-circle">
+                        <span>VS</span>
+                    </div>
+
+                    <div class="player player-o">
+                        <div class="player-icon">⭕</div>
+                        <div class="player-details">
+                            <h3>Jugador O</h3>
+                            <div class="score-display" id="score-o">0</div>
+                            <div class="player-name" id="player-o-name">Jugador O</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <div class="current-turn">
+                        <h3>Turno Actual</h3>
+                        <div class="turn-indicator" id="current-turn">❌</div>
+                    </div>
+
+                    <div class="game-status">
+                        <h3>Estado del Juego</h3>
+                        <div class="status-message" id="game-status">Esperando jugada...</div>
+                        <div id="moves-count" style="margin-top: 10px; font-size: 1.1rem; color: #666;">Movimientos:
+                            0/81</div>
+                    </div>
+
+                    <div class="game-info-panel"
+                        style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                        <div class="info-item"
+                            style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span class="info-label" style="font-weight: 600;">Tableros ganados:</span>
+                            <span class="info-value">
+                                <span style="color:#ff5757">X: <span id="boards-x">0</span></span> |
+                                <span style="color:#5792ff">O: <span id="boards-o">0</span></span>
+                            </span>
+                        </div>
+                        <div class="info-item" style="display: flex; justify-content: space-between;">
+                            <span class="info-label" style="font-weight: 600;">Estado:</span>
+                            <span class="info-value" id="game-phase" style="color: #2ecc71;">Seleccionando
+                                tablero</span>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="new-game" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Nuevo Juego
+                        </button>
+                        <button id="reset-scores" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reiniciar Partida
+                        </button>
+                        <button id="save-game" class="btn btn-success">
+                            <i class="fas fa-save"></i> Guardar Partida
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mega-board" id="mega-board">
+                <!-- Los 9 tableros se generarán dinámicamente -->
+            </div>
+
+            <div class="history-section">
+                <div class="scores-container">
+                    <h3><i class="fas fa-history"></i> Últimas 10 Partidas</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">
+                        <i class="fas fa-info-circle"></i> Historial de las partidas más recientes
+                    </p>
+
+                    <!-- Estadísticas generales -->
+                    <div id="game-stats" class="stats-container">
+                        <!-- Se cargarán dinámicamente -->
+                    </div>
+
+                    <table class="scores-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Jugadores</th>
+                                <th>Resultado</th>
+                                <th>Fecha</th>
+                                <th>Duración</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scores-table-body">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: #888; padding: 20px;">
+                                    Cargando historial de partidas...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="player-config">
+                    <h3><i class="fas fa-users"></i> Configurar Nombres Temporales</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
+                        <i class="fas fa-exclamation-triangle"></i> Los nombres son solo para esta sesión
+                    </p>
+                    <div class="form-group">
+                        <label for="player-x-input">Alias para Jugador X:</label>
+                        <input type="text" id="player-x-input" placeholder="Ej: Juan" value="">
+                        <small class="form-text"
+                            style="display: block; font-size: 0.8rem; color: #888; margin-top: 5px;">
+                            Este nombre solo se usará durante esta sesión
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-o-input">Alias para Jugador O:</label>
+                        <input type="text" id="player-o-input" placeholder="Ej: María" value="">
+                        <small class="form-text"
+                            style="display: block; font-size: 0.8rem; color: #888; margin-top: 5px;">
+                            Este nombre solo se usará durante esta sesión
+                        </small>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button id="update-names" class="btn btn-primary" style="flex: 1;">
+                            <i class="fas fa-user-edit"></i> Usar Estos Nombres
+                        </button>
+                        <button id="reset-names" class="btn btn-secondary" style="flex: 1;">
+                            <i class="fas fa-undo"></i> Restaurar Originales
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <h4><i class="fas fa-gamepad"></i> Cómo Jugar</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px; font-size: 0.9rem; color: #555;">
+                            <li style="margin-bottom: 5px;">Selecciona un tablero pequeño para jugar</li>
+                            <li style="margin-bottom: 5px;">Juega ese tres en raya COMPLETAMENTE</li>
+                            <li style="margin-bottom: 5px;">El ganador del juego pequeño reclama ese tablero</li>
+                            <li style="margin-bottom: 5px;">Gana 3 tableros en línea para ganar el juego grande</li>
+                            <li>En empates, se decide aleatoriamente el ganador (50/50)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Desarrollado con ❤️ por Jonathan Obed Rodríguez Ortiz - 5IV8 </p>
+            <p class="instructions">
+                <strong>Instrucciones Detalladas:</strong>
+                <br>
+                Este juego es un meta–tres en raya donde cada celda del tablero principal es, a su vez, un tablero
+                pequeño. El objetivo es conquistar tres tableros pequeños alineados en fila, columna o diagonal dentro
+                del tablero grande de 3x3. El juego inicia con todos los tableros disponibles y el jugador puede
+                seleccionar cualquiera para activarlo, el cual se resaltará con una animación. Dentro del tablero
+                elegido se juega un tres en raya tradicional, alternando turnos entre ❌ y ⭕ hasta que uno logre
+                completar una línea. Cuando un jugador gana un tablero pequeño, este se marca de forma permanente con su
+                símbolo. Si un tablero se llena sin ganador, el sistema lo asigna aleatoriamente a uno de los dos
+                jugadores con un 50/50 de probabilidad. Los tableros conquistados ya no pueden volver a jugarse. Una vez
+                terminado un tablero, se puede seleccionar cualquier otro que aún esté disponible, repitiendo el proceso
+                hasta que alguien gane la partida completa. El juego se gana al tener tres tableros conquistados en
+                línea dentro del tablero grande, pero también puede ganar quien tenga más tableros controlados cuando
+                todos estén ocupados. Si ambos terminan con la misma cantidad de tableros, la partida concluye en
+                empate.
+        </footer>
+    </div>
+
+    <!-- Modal para mostrar el ganador -->
+    <div class="modal" id="winner-modal">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close-modal">&times;</span>
+            <h2 id="winner-title">¡Tenemos un ganador!</h2>
+            <div class="winner-icon" id="winner-icon">❌</div>
+            <p id="winner-message">El jugador X ha ganado el juego.</p>
+            <button id="play-again" class="btn btn-primary btn-large">Jugar Otra Vez</button>
+        </div>
+    </div>
+
+    <script src="/js/game.js"></script>
+</body>
+
+</html>

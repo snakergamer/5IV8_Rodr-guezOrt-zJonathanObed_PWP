@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 50%, #b30000 100%);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 0, 255, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    /* Increased for game layout */
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 10px #ffde00,
+        0 0 0 15px #3b4cca,
+        0 0 0 20px #ff0000;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    /* Matched to index.ejs class */
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    font-size: 2.5em;
+    color: #3b4cca;
+    text-shadow:
+        3px 3px 0 #ffde00,
+        -1px -1px 0 #ffde00,
+        1px -1px 0 #ffde00,
+        -1px 1px 0 #ffde00;
+    background: linear-gradient(45deg, #ff0000, #3b4cca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+    border: 5px dashed #ffde00;
+    border-radius: 15px;
+}
+
+.subtitle {
+    font-size: 0.4em;
+    color: #2c3e50;
+    -webkit-text-fill-color: #2c3e50;
+    text-shadow: none;
+    margin-top: 10px;
+}
+
+/* =========================================
+   GAME BOARD STYLES (Added for Gato de Gatos)
+   ========================================= */
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.game-info {
+    flex: 1;
+    min-width: 300px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid #ff0000;
+    border-right: 5px solid #3b4cca;
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.player {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.player-icon {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.score-display {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #3b4cca;
+}
+
+.vs-circle {
+    background: #ffde00;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #3b4cca;
+}
+
+.mega-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    background: #2c3e50;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.small-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background-color: #ecf0f1;
+    padding: 4px;
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.small-board.active {
+    background-color: #ffde00;
+    box-shadow: 0 0 15px #ffde00;
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+.small-board.won {
+    opacity: 0.8;
+}
+
+.cell {
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.cell:hover {
+    background-color: #f0f0f0;
+}
+
+.cell.x {
+    color: #ff0000;
+}
+
+.cell.o {
+    color: #3b4cca;
+}
+
+.board-winner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    font-weight: bold;
+    z-index: 5;
+    border-radius: 8px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    font-size: 1em;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #3b4cca, #1d2c8c);
+    border: 2px solid #ffde00;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+}
+
+.btn-success {
+    background: #2ecc71;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   TABLE STYLES (From original frontend/public/css/style.css)
+   ========================================= */
+.scores-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.scores-table th {
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.scores-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.scores-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.scores-table tr:hover {
+    background-color: #e6f7ff;
+}
+
+.scores-table tr:first-child {
+    background-color: #fffacd;
+    font-weight: bold;
+}
+
+.scores-table tr:nth-child(2) {
+    background-color: #f0f0f0;
+}
+
+.scores-table tr:nth-child(3) {
+    background-color: #f5f5f5;
+}
+
+.game-history {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border-left: 4px solid #ff9a3c;
+}
+
+#recent-games {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.recent-game {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: white;
+    border-radius: 6px;
+    border-left: 3px solid #4a00e0;
+    font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 5px solid #ffde00;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.winner-icon {
+    font-size: 5em;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .game-container {
+        flex-direction: column;
+    }
+
+    .mega-board {
+        order: -1;
+        /* Board first on mobile */
+    }
+
+    .cell {
+        height: 30px;
+        width: 30px;
+        font-size: 1em;
+    }
+}
+
+.small-board.selectable {
+    border: 3px dashed #2ecc71;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.small-board.selectable:hover {
+    background-color: rgba(46, 204, 113, 0.1);
+    transform: scale(1.02);
+}
+
+/* Celdas activas en juego pequeño */
+.cell.small-game-active {
+    background-color: #e8f4f8;
+    cursor: pointer !important;
+    transition: background-color 0.2s;
+}
+
+.cell.small-game-active:hover {
+    background-color: #d4eaf7;
+}
+
+/* Estado del juego pequeño activo */
+.small-board.active {
+    border: 4px solid #4a00e0;
+    box-shadow: 0 0 25px rgba(74, 0, 224, 0.8);
+    animation: pulse-active 1.5s infinite;
+}
+
+@keyframes pulse-active {
+    0% {
+        box-shadow: 0 0 15px rgba(74, 0, 224, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(74, 0, 224, 0.9);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(74, 0, 224, 0.5);
+    }
+}
+
+/* Estilo para empates */
+.board-winner[style*="color: #888"] {
+    font-size: 3.5rem;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+/* Indicador de juego en progreso */
+.game-status[style*="color: #2ecc71"] {
+    font-weight: bold;
+    animation: blink-status 2s infinite;
+}
+
+@keyframes blink-status {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
